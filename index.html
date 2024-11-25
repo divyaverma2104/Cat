@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Bulb and Cat Toggle</title>
+   <style>
+    /* Ensure dark background fills the screen */
+    .dark-background {
+        background-color: #040202;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+        min-height: 100vh;
+        padding: 16px; /* Add padding for smaller devices */
+        overflow: hidden; /* Prevent unnecessary scrolling */
+    }
+ 
+    /* Bulb and Cat Images */
+    .bulb-image, .cat-image {
+        width: 80%; /* Shrink images for smaller screens */
+        max-width: 150px; /* Smaller maximum size to fit everything */
+        display: none; /* Initially hidden */
+        transition: opacity 0.5s ease-in-out; /* Smooth transition */
+    }
+ 
+    /* Switch Board */
+    .switch-board {
+        width: 100%; /* Responsive width */
+        max-width: 294px; /* Maintain the original width on larger screens */
+        height: auto; /* Auto height to adjust with content */
+        padding: 16px; /* Reduce padding for smaller devices */
+        background-color: #7b8794;
+        border-radius: 12px;
+        margin: 16px;
+        text-align: center;
+    }
+ 
+    /* Switch Status */
+    .switch-status {
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        font-size: 20px; /* Adjust font size */
+        color: #ffffff;
+        margin-bottom: 16px; /* Reduce margin for smaller devices */
+    }
+ 
+    /* Switch Buttons */
+    .on-switch, .off-switch {
+        font-family: "Roboto", sans-serif;
+        font-weight: bold;
+        font-size: 18px; /* Adjust font size */
+        color: #ffffff;
+        border-radius: 8px;
+        width: 80px; /* Smaller buttons for smaller devices */
+        height: 36px; /* Reduce height */
+        margin: 8px 4px; /* Adjust margin */
+        cursor: pointer;
+        border: none;
+    }
+ 
+    .on-switch {
+        background-color: #4caf50; /* Green */
+    }
+ 
+    .off-switch {
+        background-color: #e12d39; /* Red */
+    }
+ 
+    /* Responsive Media Queries */
+    @media (max-width: 768px) {
+        .bulb-image, .cat-image {
+            max-width: 120px; /* Reduce image size for tablets and smaller devices */
+        }
+ 
+        .switch-status {
+            font-size: 18px; /* Smaller font for smaller screens */
+        }
+ 
+        .on-switch, .off-switch {
+            width: 70px; /* Smaller buttons */
+            height: 32px;
+            font-size: 16px; /* Adjust font size */
+        }
+    }
+ 
+    @media (max-width: 480px) {
+        .bulb-image, .cat-image {
+            max-width: 100px; /* Further reduce image size for mobile */
+        }
+ 
+        .switch-status {
+            font-size: 16px; /* Smaller font size */
+        }
+ 
+        .on-switch, .off-switch {
+            width: 60px; /* Even smaller buttons */
+            height: 28px;
+            font-size: 14px;
+        }
+    }
+</style>
+
+ </style>
+ 
+</head>
+<body>
+   <div class="dark-background">
+       <!-- Bulb Images -->
+       <img src="https://i.pinimg.com/originals/62/29/21/622921286f83a8a83dde5f6fb8d4fbd4.jpg" class="bulb-image" id="bulbOn" alt="Bulb On" />
+       <img src="https://w0.peakpx.com/wallpaper/141/329/HD-wallpaper-schwarz-black-dark-gray-solid.jpg" class="bulb-image" id="bulbOff" alt="Bulb Off" />
+
+       <!-- Cat Images -->
+       <img src="https://i.pinimg.com/736x/c5/6b/9d/c56b9d161a2e2cadc3c82ea3451e6c41.jpg" class="cat-image" id="catFull" alt="Full Cat" />
+       <img src="https://i.pinimg.com/originals/a2/9f/2d/a29f2da72857eabbb9ea2db362ac289f.jpg" class="cat-image" id="catEyes" alt="Cat Eyes" />
+
+       <!-- Switch Board -->
+       <div class="switch-board">
+           <h1 class="switch-status" id="switchStatus">Switched Off</h1>
+           <button class="off-switch" onclick="switchOff()">OFF</button>
+           <button class="on-switch" onclick="switchOn()">ON</button>
+       </div>
+   </div>
+
+   <script>
+       function switchOn() {
+           // Show the ON bulb and hide the OFF bulb
+           document.getElementById("bulbOn").style.display = "block";
+           document.getElementById("bulbOff").style.display = "none";
+
+           // Show the full cat, reset opacity
+           const catFull = document.getElementById("catFull");
+           const catEyes = document.getElementById("catEyes");
+           catFull.style.display = "block";
+           catFull.style.opacity = "1"; // Fully visible
+           catEyes.style.display = "none";
+
+           // Change background to light
+           document.body.style.backgroundColor = "#f8f9fa";
+
+           // Update the switch status
+           document.getElementById("switchStatus").textContent = "Switched On";
+       }
+
+       function switchOff() {
+    // Show the OFF bulb and hide the ON bulb
+    document.getElementById("bulbOn").style.display = "none";
+    document.getElementById("bulbOff").style.display = "block";
+
+    // Only show the faded full cat, hide glowing eyes
+    const catFull = document.getElementById("catFull");
+    const catEyes = document.getElementById("catEyes");
+    catFull.style.opacity = "0.2"; // Faded appearance
+    catFull.style.display = "block";
+    catEyes.style.display = "none"; // Hide glowing eyes
+
+    // Change background to dark
+    document.body.style.backgroundColor = "#040202";
+
+    // Update the switch status
+    document.getElementById("switchStatus").textContent = "Switched Off";
+}
+
+   </script>
+</body>
+</html>
